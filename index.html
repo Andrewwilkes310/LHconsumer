@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden;width:100%}
 :root{
   --bg:#F5EFE6;
   --surface:#EEE5D8;
@@ -25,10 +27,10 @@
   --red-bg:#FDECEA;--orange-bg:#FEF0E6;--amber-bg:#FEF8E6;--green-bg:#E6F4EC;--blue-bg:#E8F0FC;
 }
 
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;width:100%}
 
 /* ── PAGES ── */
-.page{display:none;min-height:100vh;flex-direction:column}
+.page{display:none;min-height:100vh;flex-direction:column;width:100%}
 .page.active{display:flex}
 
 /* ── TOP NAV ── */
@@ -55,7 +57,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .user-greet{font-size:13px;color:rgba(245,230,208,.7)}
 
 /* ── CONTENT ── */
-.content{flex:1;padding:40px 44px;max-width:1200px;margin:0 auto;width:100%}
+.content{flex:1;padding:40px 44px;max-width:1200px;margin:0 auto;width:100%;min-width:0}
 
 /* ── HERO ── */
 .hero{
@@ -307,6 +309,221 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 /* ── PROGRESS RING ── */
 .progress-ring{transform:rotate(-90deg)}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE RESPONSIVE — iPhone optimized
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── BOTTOM TAB BAR (replaces top nav links on mobile) ── */
+  .nav-links { display: none !important; }
+  .user-greet { display: none; }
+  .topnav { padding: 0 16px; height: 52px; }
+  .brand-name { font-size: 14px; }
+
+  .bottom-tabs {
+    display: flex !important;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: var(--brand-dark);
+    border-top: 1px solid rgba(255,255,255,.1);
+    z-index: 200;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .btab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    color: rgba(245,230,208,.45);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding-top: 8px;
+    transition: color .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btab.active { color: #F5E6D0; }
+  .btab svg { opacity: .45; }
+  .btab.active svg { opacity: 1; }
+  .btab-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--brand-mid); margin-top: -2px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 16px !important;
+    padding-bottom: 88px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 20px 18px !important;
+    border-radius: 16px !important;
+    margin-bottom: 14px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .hero-top {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-bottom: 18px !important;
+  }
+  .hero-score-wrap {
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+  }
+  .hero-score { font-size: 48px !important; }
+  .hero-name { font-size: 26px !important; line-height: 1.15 !important; }
+  .hero-greeting { font-size: 11px !important; }
+  .hero-sub { font-size: 12px !important; }
+  .hero-stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .hstat { padding: 12px 12px !important; border-radius: 10px !important; }
+  .hstat-val { font-size: 18px !important; }
+  .hstat-label { font-size: 9px !important; }
+  .hstat-trend { font-size: 9px !important; }
+
+  /* ── GRIDS → SINGLE COLUMN ── */
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .grid-4 { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .bio-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* ── CARDS ── */
+  .card { padding: 16px 14px !important; border-radius: 14px !important; width: 100% !important; min-width: 0 !important; }
+
+  /* ── SECTION TITLES ── */
+  .sec-title { font-size: 18px; }
+
+  /* ── TASK ITEMS ── */
+  .task-check { width: 26px; height: 26px; } /* bigger tap target */
+  .task-text { font-size: 13px; }
+  .task-category { display: none; } /* declutter on mobile */
+
+  /* ── BIOMARKER CARDS ── */
+  .bio-card { padding: 14px 12px; border-radius: 14px; }
+  .bio-val { font-size: 22px; }
+  .bio-icon { font-size: 18px; margin-bottom: 6px; }
+
+  /* ── LABS HERO ── */
+  .labs-hero {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 18px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .labs-score-grid { gap: 10px; }
+  .lscore { padding: 10px 14px; }
+  .lscore-val { font-size: 22px; }
+
+  /* ── BODY SUMMARY (5-col → 3+2) ── */
+  #body-summary {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+  #body-summary > div:nth-child(4),
+  #body-summary > div:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  /* ── TREND CHARTS (2-col → 1-col) ── */
+  #trend-charts { grid-template-columns: 1fr !important; }
+
+  /* ── PROTOCOL ROWS ── */
+  .proto-name { font-size: 13px; }
+  .proto-desc { font-size: 11px; }
+  .proto-check { width: 28px; height: 28px; } /* bigger tap */
+
+  /* ── MESSAGES ── */
+  .msg-layout {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+  }
+  .msg-list-panel {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .msg-thread-area { max-height: 320px; padding: 14px 16px; }
+  .msg-main-hdr { padding: 14px 16px; }
+  .msg-input-area { padding: 12px 16px; }
+  .bubble { max-width: 82%; font-size: 13px; }
+
+  /* ── PROFILE ── */
+  .profile-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    border-radius: 16px;
+    gap: 16px;
+  }
+  .prof-av { margin: 0 auto; }
+  .prof-name { font-size: 22px; }
+  .profile-hero > div:last-child { margin-left: 0 !important; text-align: center; }
+
+  /* ── UPCOMING SECTION (3-col → 1-col) ── */
+  .content [style*="grid-template-columns:1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── WEARABLE CARD ── */
+  .wear-card { padding: 16px; border-radius: 14px; }
+
+  /* ── INSIGHT CARD ── */
+  .insight-card { padding: 16px 18px; border-radius: 14px; }
+  .ins-title { font-size: 16px; }
+
+  /* ── MODAL ── */
+  .modal {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 24px 20px !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    max-height: 88vh !important;
+  }
+  .modal-overlay.open { align-items: flex-end !important; }
+
+  /* ── BUTTONS ── */
+  .btn { min-height: 44px; } /* Apple HIG minimum tap size */
+  .btn-sm { min-height: 36px; }
+
+  /* ── ADHERENCE ── */
+  .adh-week { height: 50px; }
+}
+
+/* Hide bottom tabs on desktop */
+.bottom-tabs { display: none; }
+
+/* Safe area support for iPhone X+ notch/home bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  @media (max-width: 768px) {
+    .topnav { padding-top: env(safe-area-inset-top); }
+  }
+}
+
 </style>
 </head>
 <body>
@@ -504,6 +721,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </div>
   </div>
+
+<div class="bottom-tabs"><div class="btab active" onclick="nav('pg-home')">🏠<span>Home</span></div><div class="btab " onclick="nav('pg-labs')">🧬<span>Labs</span></div><div class="btab " onclick="nav('pg-protocol')">📋<span>Protocol</span></div><div class="btab " onclick="nav('pg-body')">⌚<span>Body</span></div><div class="btab " onclick="nav('pg-messages')">💬<span>Messages</span><div class="btab-dot"></div></div></div>
 </div>
 
 <!-- ══════════════════════════════════
@@ -546,6 +765,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="bio-grid" id="lipid-grid"></div>
     <div style="height:40px"></div>
   </div>
+
+<div class="bottom-tabs"><div class="btab " onclick="nav('pg-home')">🏠<span>Home</span></div><div class="btab active" onclick="nav('pg-labs')">🧬<span>Labs</span></div><div class="btab " onclick="nav('pg-protocol')">📋<span>Protocol</span></div><div class="btab " onclick="nav('pg-body')">⌚<span>Body</span></div><div class="btab " onclick="nav('pg-messages')">💬<span>Messages</span><div class="btab-dot"></div></div></div>
 </div>
 
 <!-- ══════════════════════════════════
@@ -616,6 +837,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="ins-action">View lab order →</div>
     </div>
   </div>
+
+<div class="bottom-tabs"><div class="btab " onclick="nav('pg-home')">🏠<span>Home</span></div><div class="btab " onclick="nav('pg-labs')">🧬<span>Labs</span></div><div class="btab active" onclick="nav('pg-protocol')">📋<span>Protocol</span></div><div class="btab " onclick="nav('pg-body')">⌚<span>Body</span></div><div class="btab " onclick="nav('pg-messages')">💬<span>Messages</span><div class="btab-dot"></div></div></div>
 </div>
 
 <!-- ══════════════════════════════════
@@ -666,6 +889,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </div>
   </div>
+
+<div class="bottom-tabs"><div class="btab " onclick="nav('pg-home')">🏠<span>Home</span></div><div class="btab " onclick="nav('pg-labs')">🧬<span>Labs</span></div><div class="btab " onclick="nav('pg-protocol')">📋<span>Protocol</span></div><div class="btab active" onclick="nav('pg-body')">⌚<span>Body</span></div><div class="btab " onclick="nav('pg-messages')">💬<span>Messages</span><div class="btab-dot"></div></div></div>
 </div>
 
 <!-- ══════════════════════════════════
@@ -780,6 +1005,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </div>
   </div>
+
+<div class="bottom-tabs"><div class="btab " onclick="nav('pg-home')">🏠<span>Home</span></div><div class="btab " onclick="nav('pg-labs')">🧬<span>Labs</span></div><div class="btab " onclick="nav('pg-protocol')">📋<span>Protocol</span></div><div class="btab " onclick="nav('pg-body')">⌚<span>Body</span></div><div class="btab active" onclick="nav('pg-messages')">💬<span>Messages</span></div></div>
 </div>
 
 <!-- BIOMARKER DETAIL MODAL -->
